@@ -14,14 +14,14 @@ header('Location: ' . $home_url);
 		$query = "SELECT * from products";
 		$data = mysqli_query($dbc, $query);
 		?>
-		<table width="100%">
+		<table width="100%" id="contenttable">
 	<tr class="thead">
 		<td>Product Name</td><td>Price per unit</td><td>Category</td><td>Shelf</td><td>Inventory</td><td>Supplier Name</td>
 	
 	</tr>
 	<?php
  while ($row = mysqli_fetch_array($data)) {
- 	echo '<tr class="tbody"><td>' . $row['name'] . '</td><td>' . $row['price_per_unit'] . '</td><td>' . $row['product_category'] . '</td><td>' . $row['quantity_on_shelf'] . '</td><td>' . $row['quantity_in_inventory'] . '</td><td>' . $row['supplier_name'] . '</td></tr>';
+ 	echo '<tr class="tbody" onclick="editthis(1,' . $row['id'] .')"><td>' . $row['name'] . '</td><td>' . $row['price_per_unit'] . '</td><td>' . $row['product_category'] . '</td><td>' . $row['quantity_on_shelf'] . '</td><td>' . $row['quantity_in_inventory'] . '</td><td>' . $row['supplier_name'] . '</td></tr>';
  }
  ?>
 </table>

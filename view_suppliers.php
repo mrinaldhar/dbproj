@@ -24,7 +24,7 @@ if ($_SESSION['accesslevel']=='Supervisor')
 $query = "select * from supplier inner join person on supplier.person_id=person.id";
 		$data = mysqli_query($dbc, $query);
 		while ($row=mysqli_fetch_array($data)) {
-			 	echo '<tr class="tbody"><td>' . $row['name'] . '</td><td>' . $row['rating'] . '</td><td>' . $row['email'] . '</td><td>' . $row['phone'] . '</td><td>' . $row['gender'] . '</td><td>' . $row['address'] . '</td><td>' . $row['products'] . '</td><td>' . $row['working_since'] . '</td></tr>';
+			 	echo '<tr class="tbody" onclick="editthis(3,'.$row['person_id'] . ')"><td>' . $row['name'] . '</td><td>' . $row['rating'] . '</td><td>' . $row['email'] . '</td><td>' . $row['phone'] . '</td><td>' . $row['gender'] . '</td><td>' . $row['address'] . '</td><td>' . $row['products'] . '</td><td>' . $row['working_since'] . '</td></tr>';
 
 		}
 		?>

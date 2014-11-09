@@ -273,6 +273,11 @@ background-color: rgba(255,255,255,0.8);
 	/*text-shadow: 0px 0px 20px black;*/
 
 }
+form tr td input {
+	width:100%;
+	max-width: 100%;
+
+}
 input {
 	font-family: myfont;
 	outline-width: 0px;
@@ -304,6 +309,17 @@ input {
 #more select {
 	padding: 10px;
 }
+button, input[type=submit] {
+	padding-left:10px;
+	padding-right: 10px;
+	border-radius: 5px;
+	border:0px;
+	outline-width: 0px;
+	color:white;
+	font-size: 1em;
+	box-shadow: 0px 0px 1px black;
+	background-color: rgba(47,101,158, 1);
+}
 	</style>
 </head>
 <body>
@@ -315,6 +331,9 @@ if ($_SESSION['accesslevel'] == 'Supervisor') {
 	echo '<a href="#"><li onclick="load_c(8)">Manage Employees</li></a>';
 	echo '<a href="#"><li onclick="load_c(9)">Employees supervised</li></a>';
 
+}
+if ($_SESSION['accesslevel'] == 'Supervisor' && $_SESSION['deptid']==1) {
+	echo '<a href="#"><li onclick="load_c(10)">Add Supervisors</li></a>';
 }
 ?>
 <a href="#"><li onclick="load_c(3)">Manage Customers</li></a>
@@ -597,6 +616,47 @@ function new_employee() {
 <td><input type="text" id="c_address" name="c_address" style="background-color:transparent; width:100%; max-width:100%;" placeholder="Address" /></td>\
 <td><input type="date" id="c_dob" name="c_dob" style="background-color:transparent; width:100%; max-width:100%;" placeholder="Date of Birth" /><input type="submit" /></td></form></tr>';
 $('#contenttable').append(trow);
+}
+
+function editthis(what, id) {
+	switch(what) {
+		case 1:
+			$.ajax({
+  type: "GET",
+  url: "edit_this_product.php?id="+id,
+})
+  .done(function( msg ) {
+    $('#content').html(msg);
+  });
+		break;
+		case 2:
+			$.ajax({
+  type: "GET",
+  url: "edit_this_supplier.php?id="+id,
+})
+  .done(function( msg ) {
+    $('#content').html(msg);
+  });
+		break;
+		case 3:
+			$.ajax({
+  type: "GET",
+  url: "edit_this_supplier.php?id="+id,
+})
+  .done(function( msg ) {
+    $('#content').html(msg);
+  });
+		break;
+		case 4:
+			$.ajax({
+  type: "GET",
+  url: "edit_this_employee.php?id="+id,
+})
+  .done(function( msg ) {
+    $('#content').html(msg);
+  });
+		break;
+	}
 }
 </script>
 </html>

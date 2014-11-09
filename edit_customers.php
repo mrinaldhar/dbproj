@@ -19,7 +19,7 @@ header('Location: ' . $home_url);
  $query = "select * from customer inner join person on customer.person_id=person.id";
  $data = mysqli_query($dbc, $query);
  while ($row = mysqli_fetch_array($data)) {
- 	echo '<tr class="tbody"><td>' . $row['name'] . '</td><td>' . $row['email'] . '</td><td>' . $row['phone'] . '</td><td>' . $row['gender'] . '</td><td>' . $row['address'] . '</td><td>' . $row['number_of_visits'] . '</td><td>' . $row['date_of_birth'] . '</td></tr>';
+ 	echo '<tr class="tbody" onclick="editthis(2,'.$row['person_id'] . ')"><td>' . $row['name'] . '</td><td>' . $row['email'] . '</td><td>' . $row['phone'] . '</td><td>' . $row['gender'] . '</td><td>' . $row['address'] . '</td><td>' . $row['number_of_visits'] . '</td><td>' . $row['date_of_birth'] . '</td></tr>';
  }
  ?>
 </table>
