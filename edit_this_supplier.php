@@ -35,7 +35,7 @@ $pid = $_GET['id'];
 		<td>Address</td><td><input type="text" id="c_address" name="c_address" value="<?php echo $row['address']; ?>" /></td>
 	</tr>
 	<tr class="tbody">
-		<td>Rating</td><td><input type="text" id="c_dob" name="c_dob" value="<?php echo $row['rating']; ?>" /></td>
+		<td>Rating</td><td><input type="text" id="c_rating" name="c_rating" value="<?php echo $row['rating']; ?>" /></td>
 	</tr>
 	<tr class="tbody">
 		<td>Working since</td><td><input type="text" id="c_dob" name="c_dob" value="<?php echo $row['working_since']; ?>" /></td>

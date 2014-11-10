@@ -349,7 +349,7 @@ if ($_SESSION['accesslevel'] == 'Supervisor' && $_SESSION['deptid']==1) {
 <a href="#"><li onclick="load_c(2)">See all products</li></a>
 <a href="#"><li onclick="load_c(1)" style="margin-bottom:0px;">View suppliers</li></a>
 </ul></span>
-<span id="userbtn"><img src="abc.jpg"><?php echo $_SESSION['usernaam'] . '<br />' . $_SESSION['accesslevel'] . ', ' . $_SESSION['deptid']; ?><br /><ul>
+<span id="userbtn"><img src="abc.jpg"><?php echo $_SESSION['usernaam'] . '<br />' . $_SESSION['accesslevel'] . ', ' . $_SESSION['deptname']; ?><br /><ul>
 <a href="#"><li onclick="editthis(4, <?php echo $_SESSION['userempid']; ?>)">Edit profile</li></a>
 <a href="logout.php"><li>Logout</li></a>
 </ul></span>
