@@ -14,6 +14,9 @@ header('Location: ' . $home_url);
 		$query = "SELECT * from products";
 		$data = mysqli_query($dbc, $query);
 		?>
+
+		<a href="#" onclick="new_product()">Add a product</a>
+
 		<table width="100%" id="contenttable">
 	<tr class="thead">
 		<td>Product Name</td><td>Price per unit</td><td>Category</td><td>Shelf</td><td>Inventory</td><td>Supplier Name</td>

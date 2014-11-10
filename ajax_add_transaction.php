@@ -34,18 +34,20 @@ date_default_timezone_set('utc');
 $dt = new DateTime();
 $datetime = $dt->format('Y-m-d H:i:s');
 
-$query = "SELECT * FROM person where email = '$custemail' LIMIT 1";
+$query = "SELECT * FROM person where email = '$otheremail' LIMIT 1";
 $data = mysqli_query($dbc, $query);
+echo 'ok';
 while ($row = mysqli_fetch_array($data)) {
 	$custid = intval($row['id']);
 	$custname = $row['name'];
+	echo 'got it';
 }
- $query = "INSERT INTO transactions (staff_id, staff_name, other_id, other_name, type, time) VALUES('$staffid', '$staffname', '$otherid', '$othername', '$type', '$datetime')";
+ $query = "INSERT INTO transactions (staff_id, staff_name, other_id, other_name, type, time) VALUES('$staffid', '$staffname', '$custid', '$custname', '$type', '$datetime')";
  mysqli_query($dbc, $query);
  $query = "SELECT * FROM transactions WHERE time = '$datetime' LIMIT 1";
  $data2 = mysqli_query($dbc, $query);
  while ($row = mysqli_fetch_array($data2)) {
- 	// echo 'doing';
+ 	echo 'doing';
  	$pid = intval($row['id']);
  	$query = "INSERT INTO receipts (time, total_cost, payment_mode, list_of_items, transaction_id) VALUES('$datetime', '$totalcost', '$paymode', '$listofitems', '$pid')";
  	mysqli_query($dbc, $query);

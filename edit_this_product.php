@@ -38,6 +38,7 @@ $pid = $_GET['id'];
 	<input type="submit" value="Update" />
 </table>
 </form>
+<button onclick="deletethis(4, <?php echo $pid; ?>)">Delete this record</button>
  <?php
 }
 ?>

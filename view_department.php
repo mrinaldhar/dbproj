@@ -11,7 +11,10 @@ header('Location: ' . $home_url);
  $query = "select * from departments inner join employees on departments.id=employees.department_id inner join person on employees.person_id=person.id WHERE departments.id='$deptid'";
  $data = mysqli_query($dbc, $query);
 ?>
-<h1>View Department : <?php echo $_GET['deptviewid']; ?></h1>
+<h1>View Department : <?php 
+$queryname = "SELECT * FROM departments WHERE id = '$deptid' LIMIT 1";
+$dataname = mysqli_query($dbc, $queryname);
+while ($row = mysqli_fetch_array($dataname)) { echo $row['name']; } ?></h1>
 <?php
 if($_SESSION['accesslevel']=='Supervisor') {
 	?>

@@ -309,7 +309,7 @@ input {
 #more select {
 	padding: 10px;
 }
-button, input[type=submit] {
+form button, input[type=submit] {
 	padding-left:10px;
 	padding-right: 10px;
 	border-radius: 5px;
@@ -319,6 +319,12 @@ button, input[type=submit] {
 	font-size: 1em;
 	box-shadow: 0px 0px 1px black;
 	background-color: rgba(47,101,158, 1);
+}
+ button {
+	font-size: 0.7em;
+}
+input[type=text] {
+	font-size: 1em;
 }
 	</style>
 </head>
@@ -344,7 +350,7 @@ if ($_SESSION['accesslevel'] == 'Supervisor' && $_SESSION['deptid']==1) {
 <a href="#"><li onclick="load_c(1)" style="margin-bottom:0px;">View suppliers</li></a>
 </ul></span>
 <span id="userbtn"><img src="abc.jpg"><?php echo $_SESSION['usernaam'] . '<br />' . $_SESSION['accesslevel'] . ', ' . $_SESSION['deptid']; ?><br /><ul>
-<a href="#"><li>Edit profile</li></a>
+<a href="#"><li onclick="editthis(4, <?php echo $_SESSION['userempid']; ?>)">Edit profile</li></a>
 <a href="logout.php"><li>Logout</li></a>
 </ul></span>
 </div>
@@ -597,7 +603,7 @@ function completetransaction(typeoftrans) {
   data: {
 totalcost: $('#flow').html(),
 paymode: $('#paytype').val(),
-listofitems: product_ids,								// THIS SHIT IS STILL NOT WORKING!
+listofitems: product_ids,								//Works now! YAY!
 type: transtypes[typeoftrans],
 custemail: $('#custemail').val()
   }
@@ -618,6 +624,17 @@ function new_employee() {
 $('#contenttable').append(trow);
 }
 
+function new_product() {
+	var trow = '<tr class="tbody"><form action="add_product.php" method="POST">\
+	<td><input type="text" id="c_name" name="c_name" style="background-color:transparent; width:100%; max-width:100%;" placeholder="Product Name" /></td>\
+<td><input type="text" id="c_ppu" name="c_ppu" style="background-color:transparent; width:100%; max-width:100%;" placeholder="Price per Unit" /></td>\
+<td><input type="text" id="c_cat" name="c_cat" style="background-color:transparent; width:100%; max-width:100%;" placeholder="Category" /></td>\
+<td><input type="text" id="c_shelf" name="c_shelf" style="background-color:transparent; width:100%; max-width:100%;" placeholder="On shelf" /></td>\
+<td><input type="text" id="c_inventory" name="c_inventory" style="background-color:transparent; width:100%; max-width:100%;" placeholder="In Inventory" /></td>\
+<td><input type="date" id="c_suppname" name="c_suppname" style="background-color:transparent; width:100%; max-width:100%;" placeholder="Supplier Name" /><input type="submit" /></td></form></tr>';
+$('#contenttable').append(trow);
+}
+
 function editthis(what, id) {
 	switch(what) {
 		case 1:
@@ -632,7 +649,7 @@ function editthis(what, id) {
 		case 2:
 			$.ajax({
   type: "GET",
-  url: "edit_this_supplier.php?id="+id,
+  url: "edit_this_customer.php?id="+id,
 })
   .done(function( msg ) {
     $('#content').html(msg);
@@ -658,5 +675,52 @@ function editthis(what, id) {
 		break;
 	}
 }
+
+function deletethis(what, id) {
+	var sure = prompt("Are you sure? This cannot be undone.");
+	if (sure == true) {
+		switch(what) {
+			case 1:
+			$.ajax({
+  type: "GET",
+  url: "del_this_supplier.php?id="+id,
+})
+  .done(function( msg ) {
+    $('#content').html(msg);
+  });
+			break;
+			case 2:
+			$.ajax({
+  type: "GET",
+  url: "del_this_employee.php?id="+id,
+})
+  .done(function( msg ) {
+    $('#content').html(msg);
+  });
+			break;
+			case 3:
+			$.ajax({
+  type: "GET",
+  url: "del_this_customer.php?id="+id,
+})
+  .done(function( msg ) {
+    $('#content').html(msg);
+  });
+			break;
+			case 4:
+			$.ajax({
+  type: "GET",
+  url: "del_this_product.php?id="+id,
+})
+  .done(function( msg ) {
+    $('#content').html(msg);
+  });
+			break;
+
+		}
+	}
+}
 </script>
 </html>
+
+<!-- If you get time, add ability to add new departments. -->

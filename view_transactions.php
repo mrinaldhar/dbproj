@@ -9,7 +9,7 @@ header('Location: ' . $home_url);
 <h1>View Transactions</h1>
 <table width="100%" style="width:100%; max-width:100%;" id="contenttable">
 	<tr class="thead">
-		<td>Type</td><td>Staff Name</td><td>Client Name</td><td>Time</td><td>Total Cost</td><td>Mode of Payment</td><td>Products</td>
+		<td>Staff Name</td><td>Client Name</td><td>Time</td><td>Total Cost</td><td>Mode of Payment</td><td>Products</td>
 	
 	</tr>
 	<?php
@@ -25,7 +25,7 @@ header('Location: ' . $home_url);
  		 $query = "select * from receipts inner join transactions on receipts.transaction_id=transactions.id WHERE staff_id='$staff_id'";
  $data = mysqli_query($dbc, $query);
  while ($row = mysqli_fetch_array($data)) {
- 	echo '<tr class="tbody"><td>' . $row['type'] . '</td><td>' . $row['staff_name'] . '</td><td>' . $row['other_name'] . '</td><td>' . $row['time'] . '</td><td>' . $row['total_cost'] . '</td><td>' . $row['payment_mode'] . '</td><td>' . $row['list_of_items'] . '</td></tr>';
+ 	echo '<tr class="tbody"><td>' . $row['staff_name'] . '</td><td>' . $row['other_name'] . '</td><td>' . $row['time'] . '</td><td>' . $row['total_cost'] . '</td><td>' . $row['payment_mode'] . '</td><td>' . $row['list_of_items'] . '</td></tr>';
  }
  	}
  }
@@ -33,7 +33,7 @@ header('Location: ' . $home_url);
  $query = "select * from receipts inner join transactions on receipts.transaction_id=transactions.id";
  $data = mysqli_query($dbc, $query);
  while ($row = mysqli_fetch_array($data)) {
- 	echo '<tr class="tbody"><td>' . $row['type'] . '</td><td>' . $row['staff_name'] . '</td><td>' . $row['other_name'] . '</td><td>' . $row['time'] . '</td><td>' . $row['total_cost'] . '</td><td>' . $row['payment_mode'] . '</td><td>' . $row['list_of_items'] . '</td></tr>';
+ 	echo '<tr class="tbody"><td>' . $row['staff_name'] . '</td><td>' . $row['other_name'] . '</td><td>' . $row['time'] . '</td><td>' . $row['total_cost'] . '</td><td>' . $row['payment_mode'] . '</td><td>' . $row['list_of_items'] . '</td></tr>';
  }
 }
  ?>

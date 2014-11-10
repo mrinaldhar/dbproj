@@ -43,6 +43,7 @@ $pid = $_GET['id'];
 
 </table>
 </form>
+<button onclick="deletethis(3, <?php echo $pid; ?>)">Delete this record</button>
  <?php
 }
 ?>

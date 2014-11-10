@@ -6,7 +6,7 @@ $home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . 
 header('Location: ' . $home_url); 
 }
 ?>
-<h1>Update this Employee's details</h1>
+<h1>Update Employee details</h1>
 <?php
 require_once('connectvars.php'); 
 $pid = $_GET['id'];
@@ -35,17 +35,15 @@ $pid = $_GET['id'];
 		<td>Address</td><td><input type="text" id="c_address" name="c_address" value="<?php echo $row['address']; ?>" /></td>
 	</tr>
 	<tr class="tbody">
-		<td>Rating</td><td><input type="text" id="c_dob" name="c_dob" value="<?php echo $row['rating']; ?>" /></td>
-	</tr>
-	<tr class="tbody">
-		<td>Working since</td><td><input type="text" id="c_dob" name="c_dob" value="<?php echo $row['working_since']; ?>" /></td>
+		<td>Date of Birth</td><td><input type="text" id="c_dob" name="c_dob" value="<?php echo $row['date_of_birth']; ?>" /></td>
 	</tr>
 	<input type="hidden" id="id" name="id" value="<?php echo $pid; ?>" />
-	<input type="hidden" id="type" name="type" value="supplier" />
+	<input type="hidden" id="type" name="type" value="employee" />
 	<input type="submit" value="Update" />
 
 </table>
 </form>
+<button onclick="deletethis(2, <?php echo $pid; ?>)">Delete this record</button>
  <?php
 }
 ?>
