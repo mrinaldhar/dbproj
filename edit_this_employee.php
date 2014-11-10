@@ -37,6 +37,9 @@ $pid = $_GET['id'];
 	<tr class="tbody">
 		<td>Date of Birth</td><td><input type="text" id="c_dob" name="c_dob" value="<?php echo $row['date_of_birth']; ?>" /></td>
 	</tr>
+	<tr class="tbody">
+		<td>Password</td><td><input type="password" id="c_password" name="c_password" placeholder="Leave empty if no change" /></td>
+	</tr>
 	<input type="hidden" id="id" name="id" value="<?php echo $pid; ?>" />
 	<input type="hidden" id="type" name="type" value="employee" />
 	<input type="submit" value="Update" />

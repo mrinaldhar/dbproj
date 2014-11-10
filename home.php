@@ -326,6 +326,18 @@ form button, input[type=submit] {
 input[type=text] {
 	font-size: 1em;
 }
+#contenttable tr:hover {
+	background-color: rgba(47,101,158,0.9);
+	cursor: pointer;
+	color:white;
+}
+.stats {
+	font-size: 2em;
+}
+#content a {
+	padding:10px;
+	color: black;
+}
 	</style>
 </head>
 <body>
@@ -349,7 +361,7 @@ if ($_SESSION['accesslevel'] == 'Supervisor' && $_SESSION['deptid']==1) {
 <a href="#"><li onclick="load_c(2)">See all products</li></a>
 <a href="#"><li onclick="load_c(1)" style="margin-bottom:0px;">View suppliers</li></a>
 </ul></span>
-<span id="userbtn"><img src="abc.jpg"><?php echo $_SESSION['usernaam'] . '<br />' . $_SESSION['accesslevel'] . ', ' . $_SESSION['deptname']; ?><br /><ul>
+<span id="userbtn"><img src="mypic.jpg"><?php echo $_SESSION['usernaam'] . '<br />' . $_SESSION['accesslevel'] . ', ' . $_SESSION['deptname']; ?><br /><ul>
 <a href="#"><li onclick="editthis(4, <?php echo $_SESSION['userempid']; ?>)">Edit profile</li></a>
 <a href="logout.php"><li>Logout</li></a>
 </ul></span>
@@ -359,8 +371,14 @@ if ($_SESSION['accesslevel'] == 'Supervisor' && $_SESSION['deptid']==1) {
 <span id="footer">&copy; 2014 Mrinal Dhar &amp; Chirag Singhal. All Rights Reserved.</span>
 
 <div id="content">
-<h1>Content title</h1>
-Actual Content
+<h1>Stats</h1>
+<table id="contenttable" width="100%">
+	<tr class="tbody stats">
+		<td width="80%">HI
+		</td>
+		<td width="20%">BYE
+		</td>
+	</tr>
 </div>
 <span id="flowdetails">
 hi
@@ -452,6 +470,15 @@ function load_c(what) {
   $.ajax({
   type: "GET",
   url: "employees_supervised.php",
+})
+  .done(function( msg ) {
+    $('#content').html(msg);
+  });
+   break;
+         case 10:
+  $.ajax({
+  type: "GET",
+  url: "add_supervisor.php",
 })
   .done(function( msg ) {
     $('#content').html(msg);
@@ -677,13 +704,13 @@ function editthis(what, id) {
 }
 
 function deletethis(what, id) {
-	var sure = prompt("Are you sure? This cannot be undone.");
+	var sure = confirm("Are you sure? This cannot be undone.");
 	if (sure == true) {
 		switch(what) {
 			case 1:
 			$.ajax({
   type: "GET",
-  url: "del_this_supplier.php?id="+id,
+  url: "delete.php?what=supplier&id="+id,
 })
   .done(function( msg ) {
     $('#content').html(msg);
@@ -692,7 +719,7 @@ function deletethis(what, id) {
 			case 2:
 			$.ajax({
   type: "GET",
-  url: "del_this_employee.php?id="+id,
+  url: "delete.php?what=employee&id="+id,
 })
   .done(function( msg ) {
     $('#content').html(msg);
@@ -701,7 +728,7 @@ function deletethis(what, id) {
 			case 3:
 			$.ajax({
   type: "GET",
-  url: "del_this_customer.php?id="+id,
+  url: "delete.php?what=customer&id="+id,
 })
   .done(function( msg ) {
     $('#content').html(msg);
@@ -710,7 +737,7 @@ function deletethis(what, id) {
 			case 4:
 			$.ajax({
   type: "GET",
-  url: "del_this_product.php?id="+id,
+  url: "delete.php?what=product&id="+id,
 })
   .done(function( msg ) {
     $('#content').html(msg);

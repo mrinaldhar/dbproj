@@ -28,12 +28,19 @@ $c_gender = $_POST['c_gender'];
 $c_email = $_POST['c_email'];
 $c_address = $_POST['c_address'];
 $c_dob = $_POST['c_dob'];
+$c_password = $_POST['c_password'];
 
 $query = "UPDATE person set name = '$c_name', phone = '$c_phone', gender = '$c_gender', email = '$c_email', address = '$c_address' WHERE id = '$id' LIMIT 1";
 mysqli_query($dbc, $query);
+if ($c_password == '') {
 
 $query = "UPDATE employees set date_of_birth = '$c_dob' WHERE person_id = '$id' LIMIT 1";
 mysqli_query($dbc, $query);
+}
+else {
+	$query = "UPDATE employees set password = MD5('$c_password'), date_of_birth = '$c_dob' WHERE person_id = '$id' LIMIT 1";
+mysqli_query($dbc, $query);
+}
 }
 else if ($what == 'supplier') {
 $c_name = $_POST['c_name'];
