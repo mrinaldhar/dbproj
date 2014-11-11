@@ -373,12 +373,64 @@ if ($_SESSION['accesslevel'] == 'Supervisor' && $_SESSION['deptid']==1) {
 <div id="content">
 <h1>Stats</h1>
 <table id="contenttable" width="100%">
+		<?php
+require_once('connectvars.php'); 
+$dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME); 
+$q1 = "SELECT * FROM employees";
+$d1 = mysqli_query($dbc, $q1);
+
+$q2 = "SELECT * FROM products";
+$d2 = mysqli_query($dbc, $q2);
+
+$q3 = "SELECT * FROM supplier";
+$d3 = mysqli_query($dbc, $q3);
+
+$q4 = "SELECT * FROM transactions";
+$d4 = mysqli_query($dbc, $q4);
+
+$q5 = "SELECT * FROM supervisor";
+$d5 = mysqli_query($dbc, $q5);
+
+$q6 = "SELECT * FROM customer";
+$d6 = mysqli_query($dbc, $q6);
+?>
 	<tr class="tbody stats">
-		<td width="80%">HI
+		<td width="80%">Employees
 		</td>
-		<td width="20%">BYE
+		<td width="20%"><?php echo mysqli_num_rows($d1); ?>
 		</td>
 	</tr>
+	<tr class="tbody stats">
+		<td width="80%">Products
+		</td>
+		<td width="20%"><?php echo mysqli_num_rows($d2); ?>
+		</td>
+	</tr>
+	<tr class="tbody stats">
+		<td width="80%">Suppliers
+		</td>
+		<td width="20%"><?php echo mysqli_num_rows($d3); ?>
+		</td>
+	</tr>
+	<tr class="tbody stats">
+		<td width="80%">Transactions
+		</td>
+		<td width="20%"><?php echo mysqli_num_rows($d4); ?>
+		</td>
+	</tr>
+	<tr class="tbody stats">
+		<td width="80%">Supervisors
+		</td>
+		<td width="20%"><?php echo mysqli_num_rows($d5); ?>
+		</td>
+	</tr>
+	<tr class="tbody stats">
+		<td width="80%">Customers
+		</td>
+		<td width="20%"><?php echo mysqli_num_rows($d6); ?>
+		</td>
+	</tr>
+</table>
 </div>
 <span id="flowdetails">
 hi
@@ -388,6 +440,7 @@ hi
 <script src="jqueryui.js"></script>
 <script>
 function load_c(what) {
+	$('#flowdetails').hide();
 	switch(what) {
 		case 1:
 		$.ajax({
