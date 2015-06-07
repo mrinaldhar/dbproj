@@ -30,6 +30,7 @@ require_once('connectvars.php');
  	$query = "INSERT INTO customer (date_of_birth, number_of_visits, person_id) VALUES('$c_dob', 1, '$pid')";
  	mysqli_query($dbc, $query);
  }
-
+$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/home.php'; 
+header('Location: ' . $home_url); 
 }
 ?>

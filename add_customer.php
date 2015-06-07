@@ -25,12 +25,15 @@ require_once('connectvars.php');
  $query = "SELECT * FROM person WHERE email = '$c_email' LIMIT 1";
  $data2 = mysqli_query($dbc, $query);
  while ($row = mysqli_fetch_array($data2)) {
- 	// echo 'doing';
- 	$pid = $row['id'];
+ 	echo 'doing';
+ 	$pid = intval($row['id']);
+ 	echo $pid;
  	$query = "INSERT INTO customer (date_of_birth, number_of_visits, person_id) VALUES('$c_dob', 1, '$pid')";
  	mysqli_query($dbc, $query);
  }
 echo 'Customer added: ' . $c_name;
+$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/home.php'; 
+header('Location: ' . $home_url); 
 }
 else {
 	echo 'An account with this email already exists.';

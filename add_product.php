@@ -20,7 +20,7 @@ require_once('connectvars.php');
  $query = "SELECT supplier.id, person.name from supplier inner join person on person.id=supplier.person_id WHERE person.email = '$c_suppname' LIMIT 1";
  $data2 = mysqli_query($dbc, $query);
  while ($row = mysqli_fetch_array($data2)) {
- 	// echo 'doing';
+ 	echo 'doing';
  	// echo $row['id'];
  	$c_suppid = intval($row['id']);
  	$c_suppnaam = $row['name'];

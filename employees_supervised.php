@@ -28,7 +28,10 @@ else {
 	</tr>
 	<?php
  while ($row = mysqli_fetch_array($data)) {
+ 	if ($row['person_id']!=$_SESSION['userempid'])
+ 	{
  	echo '<tr class="tbody" onclick="edit_employee(' . $row['person_id'] . ')"><td>' . $row['name'] . '</td><td>' . $row['email'] . '</td><td>' . $row['phone'] . '</td><td>' . $row['gender'] . '</td><td>' . $row['address'] . '</td><td>' . $row['date_of_birth'] . '</td></tr>';
+ 	}
  }
  ?>
 </table>

@@ -27,16 +27,16 @@ require_once('connectvars.php');
  while ($row = mysqli_fetch_array($data2)) {
  	echo 'doing';
  	$pid = $row['id'];
- 	echo $c_ws . $c_rating . $c_products . $pid;
- 	$c_rating = floatval($c_rating);
  	$pid = intval($pid);
- 	$supervisor_id = $_SESSION['userempid'];
- 	$department_id = $_SESSION['deptid'];
+ 	$supervisor_id = intval($_SESSION['userempid']);
+ 	$department_id = intval($_SESSION['deptid']);
  	$password = 'helloworld';
  	$queryz = "INSERT INTO employees (date_of_birth, department_id, person_id, supervisor_id, password) VALUES('$c_dob', '$department_id', '$pid', '$supervisor_id', MD5('$password'))";
  	mysqli_query($dbc, $queryz);
  }
 echo 'Employee added: ' . $c_name;
+$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/home.php'; 
+header('Location: ' . $home_url); 
 }
 else {
 	echo 'An account with this email already exists.';

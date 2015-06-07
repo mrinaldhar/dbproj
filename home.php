@@ -342,7 +342,7 @@ input[type=text] {
 </head>
 <body>
 <div id="header">
-<span id="navbtn">Navigation<br /><ul>
+<span id="navbtn"><a href="home.php" style="text-decoration: none; color:black;">Navigation</a><br /><ul>
 <?php
 if ($_SESSION['accesslevel'] == 'Supervisor') {
 	echo '<a href="#"><li onclick="load_c(6)">View all transactions</li></a>';
@@ -656,7 +656,7 @@ function do_transaction1() {
   });
 }
 function completetransaction(typeoftrans) {
-	alert('got it');
+	alert('Transaction has been completed.');
 	var namematches = [];
 	var idmatches = [];
 	elements = document.getElementsByClassName('proname');
@@ -711,7 +711,7 @@ function new_product() {
 <td><input type="text" id="c_cat" name="c_cat" style="background-color:transparent; width:100%; max-width:100%;" placeholder="Category" /></td>\
 <td><input type="text" id="c_shelf" name="c_shelf" style="background-color:transparent; width:100%; max-width:100%;" placeholder="On shelf" /></td>\
 <td><input type="text" id="c_inventory" name="c_inventory" style="background-color:transparent; width:100%; max-width:100%;" placeholder="In Inventory" /></td>\
-<td><input type="date" id="c_suppname" name="c_suppname" style="background-color:transparent; width:100%; max-width:100%;" placeholder="Supplier Name" /><input type="submit" /></td></form></tr>';
+<td><input type="text" id="c_suppname" name="c_suppname" style="background-color:transparent; width:100%; max-width:100%;" placeholder="Supplier Email" /><input type="submit" /></td></form></tr>';
 $('#contenttable').append(trow);
 }
 

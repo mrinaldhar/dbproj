@@ -15,13 +15,13 @@ header('Location: ' . $home_url);
 	<?php
 	require_once('connectvars.php'); 
  $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME); 
- if (isset($_POST['staff_id'])) {
- 	if ($_POST['staff_id']!=$_SESSION['userempid'] && $_SESSION['accesslevel']!='Supervisor') {
+ if (isset($_GET['staff_id'])) {
+ 	if ($_GET['staff_id']!=$_SESSION['userempid'] && $_SESSION['accesslevel']!='Supervisor') {
  		$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/home.php?err=notauthorized'; 
 header('Location: ' . $home_url); 
  	}
  	else {
- 		$staff_id = $_POST['staff_id'];
+ 		$staff_id = $_GET['staff_id'];
  		 $query = "select * from receipts inner join transactions on receipts.transaction_id=transactions.id WHERE staff_id='$staff_id'";
  $data = mysqli_query($dbc, $query);
  while ($row = mysqli_fetch_array($data)) {
